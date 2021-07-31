@@ -3,6 +3,7 @@
 use App\Http\Resources\CartResource;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/cart', function(Request $request) {
     return CartResource::collection(Cart::all());
 });
+
+Route::get('/cart-reset', function(Request $request) {
+    $users = User::all();
+    if (!$users) {
+        return response(['data' => null, 'message' => 'user not found', 'status' => false]);
+    }
+    $user = $users[0];
+    $products = Product::all();
+    if (!$products) {
+        return response(['data' => null, 'message' => 'product not found', 'status' => false]);
+    }
+    foreach($products as $p) {
+        $cart = new Cart([
+            'user_id'=> $user->id,
+            'product_id'=> $p->id,
+            'qty' => random_int(1,10),
+            'price' => $p->price
+        ]);
+        $cart->save();
+    }
+    return response(['data' => null, 'status' => true]);
+});
+
 Route::get('/product/{id}/like', function(Request $request, $id) {
     $product = Product::find($id);
     if (!$product) {
