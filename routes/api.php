@@ -2,6 +2,7 @@
 
 use App\Http\Resources\CartResource;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,30 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/cart', function(Request $request) {
     return CartResource::collection(Cart::all());
+});
+Route::get('/product/{id}/like', function(Request $request, $id) {
+    $product = Product::find($id);
+    if (!$product) {
+        return response(['data' => null, 'message' => 'id not found', 'status' => false]);
+    }
+    if (!$product->like_count) {
+        $product->like_count = 0;
+    }
+    $product->like_count++;
+    $product->save();
+    return response(['data' => null, 'status' => true]);
+});
+Route::get('/product/{id}/dislike', function(Request $request, $id) {
+    $product = Product::find($id);
+    if (!$product) {
+        return response(['data' => null, 'message' => 'id not found', 'status' => false]);
+    }
+    $product->like_count--;
+    if ($product->like_count <= 0) {
+        $product->like_count = 0;
+    }
+    $product->save();
+    return response(['data' => null, 'status' => true]);
 });
 Route::get('/cart/{id}/delete', function(Request $request, $id) {
     $cart = Cart::find($id);
