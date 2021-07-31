@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -110,7 +109,7 @@
     </div>
 
     <!-- js -->
-    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/cart-complete.js') }}"></script>
     <script src="//unpkg.com/alpinejs"></script>
   </body>
 </html>

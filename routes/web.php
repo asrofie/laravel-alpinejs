@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('cart');
 });
+Route::get('/cart-complete', function () {
+    return view('cart-complete');
+});
