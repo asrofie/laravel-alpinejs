@@ -10,4 +10,8 @@ class Cart extends Model
     use HasFactory;
     protected $table='cart';
     protected $fillable=['user_id','product_id','qty','price'];
+
+    public function product() {
+        return $this->hasOne(Product::class, 'id','product_id');
+    }
 }
