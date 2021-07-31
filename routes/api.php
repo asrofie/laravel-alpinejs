@@ -18,15 +18,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/cart', function(Request $request) {
     return CartResource::collection(Cart::all());
 });
+Route::get('/cart/{id}/delete', function(Request $request, $id) {
+    $cart = Cart::find($id);
+    if (!$cart) {
+        return response(['data' => null, 'message' => 'id not found', 'status' => false]);
+    }
+    $cart->delete();
+    return response(['data' => null, 'status' => true]);
+});
 Route::get('/cart/{id}/save', function(Request $request, $id) {
     $qty = $request->get('qty');
     $cart = Cart::find($id);
     if (!$cart) {
-        return response(['data' => 'id not found', 'status' => false]);
+        return response(['data' => null, 'message' => 'id not found', 'status' => false]);
     }
     $qty = intval($qty);
     if ($qty == 0) {
-        return response(['data' => 'qty should be greater than 0', 'status' => false]);
+        return response(['data' =>  null, 'message' => 'qty should be greater than 0', 'status' => false]);
     }
     $cart->qty = $qty;
     $cart->save();
