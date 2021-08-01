@@ -13,11 +13,12 @@
     <div class="shopping-cart">
       <!-- Title -->
       <div class="title-container">
-        <div class="title">
-          Shopping Bag (3 items)
+        <div class="title-left">
+          Shopping Bag (3&nbsp;items)
+          <span class="refresh-btn"></span>
         </div>
         <div class="title">
-          <strong>$900.000</strong>
+          <strong>999.000</strong>
         </div>
       </div>
 
@@ -34,7 +35,7 @@
 
         <div class="description">
           <span>Common Projects</span>
-          <span>$130</span>
+          <span>130</span>
         </div>
 
         <div class="quantity">
@@ -47,7 +48,7 @@
           </button>
         </div>
 
-        <div class="total-price">$549</div>
+        <div class="total-price">549</div>
       </div>
 
       <!-- Product #2 -->
@@ -63,7 +64,7 @@
 
         <div class="description">
           <span>Maison Margiela</span>
-          <span>$150</span>
+          <span>150</span>
         </div>
 
         <div class="quantity">
@@ -76,7 +77,7 @@
           </button>
         </div>
 
-        <div class="total-price">$870</div>
+        <div class="total-price">870</div>
       </div>
 
       <!-- Product #3 -->
@@ -92,7 +93,7 @@
 
         <div class="description">
           <span>Our Legacy</span>
-          <span>$190</span>
+          <span>190</span>
         </div>
 
         <div class="quantity">
@@ -105,7 +106,7 @@
           </button>
         </div>
 
-        <div class="total-price">$349</div>
+        <div class="total-price">349</div>
       </div>
     </div>
 

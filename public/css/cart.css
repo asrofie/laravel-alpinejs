@@ -41,6 +41,13 @@ body {
   font-weight: 400;
 }
 
+.title-left {
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .item {
   padding: 20px 30px;
   height: 120px;
@@ -77,6 +84,17 @@ body {
   width: 60px;
   height: 60px;
   background-size: 2900%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.refresh-btn {
+  display: inline-block;
+  background: url('../images/refresh.png');
+  width: 50px;
+  height: 50px;
+  background-size: 40%;
+  background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -126,7 +144,6 @@ body {
 /* Product Quantity */
 .quantity {
   padding-top: 20px;
-  margin-right: 60px;
 }
 .quantity input {
   -webkit-appearance: none;
@@ -159,12 +176,12 @@ input:focus {
 
 /* Total Price */
 .total-price {
-  width: 83px;
+  width: 140px;
   padding-top: 27px;
-  text-align: center;
+  text-align: right;
   font-size: 16px;
   color: #43484D;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 /* Responsive */

@@ -9,103 +9,47 @@
     <meta name="robots" content="noindex,follow" />
   </head>
   <body>
-    <div class="shopping-cart">
+    <div class="shopping-cart" x-data="cartData">
       <!-- Title -->
       <div class="title-container">
-        <div class="title">
-          Shopping Bag (3 items)
+        <div class="title-left">
+          Shopping Bag (<span x-text="cartList.length"></span>&nbsp;items)
+          <span class="refresh-btn" @click="getData"></span>
         </div>
         <div class="title">
-          <strong>$900.000</strong>
+          <strong x-text="$store.filter.currencyFormat(total)"></strong>
         </div>
       </div>
 
-      <!-- Product #1 -->
-      <div class="item">
-        <div class="buttons">
-          <span class="delete-btn"></span>
-          <span class="like-btn"></span>
+      <template x-for="(item,index) in cartList" :key="item.id">
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn" @click="onRemove(index)"></span>
+            <span class="like-btn" :class="{'is-active': item.product.like_count}" @click="onLike(item)"></span>
+          </div>
+
+          <div class="image">
+            <img :src="$store.file.getImage(item.product.image)" alt="" />
+          </div>
+
+          <div class="description">
+            <span x-text="item.product.name"></span>
+            <span x-text="$store.filter.currencyFormat(item.product.price)"></span>
+          </div>
+
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button" @click="onChangeQty(item, 1)">
+              <img src="{{ asset('images/plus.svg') }}" alt="" />
+            </button>
+            <input x-model="item.qty" type="text" name="name" @keypress="$store.filter.numberOnly" @keyup.debounce.200ms="validateQty(item)">
+            <button class="minus-btn" type="button" name="button" @click="onChangeQty(item, -1)">
+              <img src="{{ asset('images/minus.svg') }}" alt="" />
+            </button>
+          </div>
+
+          <div class="total-price" x-text="$store.filter.currencyFormat(item.qty*item.product.price)" ></div>
         </div>
-
-        <div class="image">
-          <img src="{{ asset('uploads/item-1.png') }}" alt="" />
-        </div>
-
-        <div class="description">
-          <span>Common Projects</span>
-          <span>$130</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="{{ asset('images/plus.svg') }}" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="{{ asset('images/minus.svg') }}" alt="" />
-          </button>
-        </div>
-
-        <div class="total-price">$549</div>
-      </div>
-
-      <!-- Product #2 -->
-      <div class="item">
-        <div class="buttons">
-          <span class="delete-btn"></span>
-          <span class="like-btn"></span>
-        </div>
-
-        <div class="image">
-          <img src="{{ asset('uploads/item-2.png') }}" alt=""/>
-        </div>
-
-        <div class="description">
-          <span>Maison Margiela</span>
-          <span>$150</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="{{ asset('images/plus.svg') }}" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="{{ asset('images/minus.svg') }}" alt="" />
-          </button>
-        </div>
-
-        <div class="total-price">$870</div>
-      </div>
-
-      <!-- Product #3 -->
-      <div class="item">
-        <div class="buttons">
-          <span class="delete-btn"></span>
-          <span class="like-btn"></span>
-        </div>
-
-        <div class="image">
-          <img src="{{ asset('uploads/item-3.png') }}" alt="" />
-        </div>
-
-        <div class="description">
-          <span>Our Legacy</span>
-          <span>$190</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="{{ asset('images/plus.svg') }}" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="{{ asset('images/minus.svg') }}" alt="" />
-          </button>
-        </div>
-
-        <div class="total-price">$349</div>
-      </div>
+      </template>
     </div>
 
     <!-- js -->
