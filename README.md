@@ -32,9 +32,10 @@ Sebuah proyek latihan menggunakan Laravel sebagai Backend API, dan AlpineJs untu
 ## API
 
 - List Cart: [http://127.0.0.1:8000/api/cart](http://127.0.0.1:8000/api/cart)
-- Update Qty Cart: [http://127.0.0.1:8000/api/cart/{id}/save](http://127.0.0.1:8000/api/cart/{id}/save)
+- Update Qty Cart: [http://127.0.0.1:8000/api/cart/{id}/save?qty=5](http://127.0.0.1:8000/api/cart/{id}/save?qty=5)
 - Remove Cart: [http://127.0.0.1:8000/api/cart/{id}/delete](http://127.0.0.1:8000/api/cart/{id}/delete)
-- Like Product: [http://127.0.0.1:8000/api/product/{id}/delete](http://127.0.0.1:8000/api/product/{id}/delete)
+- Like Product: [http://127.0.0.1:8000/api/product/{id}/like](http://127.0.0.1:8000/api/product/{id}/like)
+- Dislike Product: [http://127.0.0.1:8000/api/product/{id}/dislike](http://127.0.0.1:8000/api/product/{id}/dislike)
 - Create Cart List: [http://127.0.0.1:8000/api/cart-reset](http://127.0.0.1:8000/api/cart-reset)
 
 ## Semoga Bermanfaat
